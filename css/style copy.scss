@@ -1,0 +1,195 @@
+@mixin size( $width, $height) {
+    width: $width;
+    height: $height;
+}
+@mixin max-size( $width, $height) {
+    max-width: $width;
+    max-height: $height;
+}
+@mixin min-size( $width, $height) {
+    min-width: $width;
+    min-height: $height;
+}
+@mixin flex( $flex-flow, $justify-content,$align-items ){
+    display: flex;
+    flex-flow: $flex-flow;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}   
+@mixin border(){
+    border: 8px ridge #da811b;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 5px 10px;
+}   
+@mixin border-mini() {
+    border-radius: 4px; 
+    border: 5px ridge #da811b;
+    box-sizing: border-box;
+}
+
+body {
+    @include size( 100vw, 100vh );
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background: url(../images/bg01.png) no-repeat 50% 50% / cover;
+}
+
+button { 
+    padding: 0 6px; 
+    height: 35px; line-height: 28px;
+    background: #fff;
+    font-weight: bold;
+    margin: 0 0 0 10px; 
+    @include border-mini();
+}
+input[type=text] {
+    height: 35px; 
+    @include border-mini();
+}
+
+.hidden { display: none; }
+.img {
+    overflow: hidden;
+    max-width: 400px;
+    img {
+        width: 100%; height: auto;
+        object-fit: contain;
+    }
+}
+
+
+h1 { cursor: pointer; color: #2F130F; }
+
+.active {
+    color: tomato;
+    transition: color .3s;
+}
+
+.box {
+    @include border();
+    background: #FFECB8;
+    margin: 0 0 20px;
+}
+
+.btns { margin-bottom: 20px; }
+
+.search-sect {
+    width: 80vw;
+    max-width: 1100px;
+
+    @include flex(row, space-between, flex-start);
+    flex-flow: wrap;
+    gap: clamp(10px, 2vw, 30px);  
+}
+
+.main-sect {
+    @include size( 80vw, 32vh );
+    max-width: 1100px;
+    margin-bottom: 20px;
+
+    @include flex( row, space-between, flex-end);
+    flex-flow: wrap;
+    gap: clamp(10px, 2vw, 30px);
+
+
+
+    .background-img {
+        width: 700px;
+    }
+
+    #quote {
+        width: 60%;
+    }
+
+    .info-wrap {
+        @include size( 15%, auto);
+        @include size( 290px, 254px);
+        box-sizing: border-box;
+        @include flex(column, flex-end, center);
+
+        background: url(../images/face-bg.png) no-repeat 0 0 / contain ;
+
+        &.hidden { display: none; }
+        .profile-img {
+
+            @include size(50%, 50%);
+            @include max-size(329px, 329px);
+            margin-bottom: 20px;
+        }
+
+        #greeting {
+            text-align: center;
+            margin: 0 0 2px;
+        }
+    }
+
+    #quote {
+        align-self: flex-end;
+    }
+}
+
+.search-wrap {
+    width: 48%;
+    max-width: 500px;
+    min-width: 300px;
+    & > * {
+        @include flex(row, center, center);
+        // background-color: #fff;
+        & > span {
+            display: inline-block;
+            font-size: 0;
+            @include size(30px, 30px);
+            background: no-repeat 50% 50% / contain;
+            margin-right: 10px;
+
+        }
+        input[type=search] {
+            width: 88%;
+            height: 35px;
+            flex-shrink: 1;
+            border: 0;
+            @include border-mini();
+        }
+    }
+
+    .google {
+        span { background-image: url(../images/google.png); }
+        input {}
+        .search {}
+    }
+    .naver {
+        span { background-image: url(../images/naver.png); }
+        input {}
+        .search {}
+    }
+}
+
+#login-form, #clock, .weather { 
+    width: 290px;
+}
+
+.todo-wrap {
+    width: 80vw;
+    max-width: 1100px;
+    min-height: 300px;
+
+    #todo-form {
+        width: 100%;
+        input[type=text] { width: 40%;}
+    }
+    .todo-list  {
+        list-style: none;
+        padding: 0 20px;
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

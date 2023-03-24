@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum App</title>
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- 디자인 차용 ref  https://robertozaccardi.dev -->
+
+    <div class="btns">
+        <button class="reset-btn" onclick="clearAll()">RESET&nbsp;& RESTART</button>
+        <button class="bg-btn">change bg</button>
+    </div>
+    <section class="search-sect">
+        <!-- 
+            name="q" 이건 왜 쓰는걸까?
+                // input 양식 컨트롤의 이름. 이름/값 짝(name/value pair)의 일부로서 양식과 함께 전송된다
+            'form의 action'+'?'+'input의 name' + '=검색키워드'
+                = "https://www.google.com/search ? q =검색키워드
+            
+            https://www.google.com/search? q =검색키워드
+            https://search.naver.com/search.naver ? query =검색키워드
+        -->
+        <div class="search-wrap box">
+            <form action="https://www.google.com/search" class="google" method="get">
+                <span>google</span>
+                <input type="search" name="q">
+                <button onclick="buttonDefault" class="search" type="submit">🔍</button>
+            </form>
+        </div>
+        <div class="search-wrap box">
+            <form action="https://search.naver.com/search.naver" class="naver" method="get">
+                <span>naver</span>
+                <input type="search" name="query">
+                <button onclick="buttonDefault" class="search" type="submit">🔍</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="main-sect">
+        <div class="left">
+            <div id="clock" class="box">AM 00:00:00</div>  
+            <form id="login-form" class="box">
+                <p class="title">what is your name?</p>
+                <input 
+                required
+                type="text" 
+                maxlength="15"
+                placeholder="write name here -!" 
+                />
+                <button type="submit">ENTER</button>
+            </form>
+            <div class="info-wrap hidden box">
+                <h1 id="greeting"></h1>
+            </div>
+
+            <div class="weather box">
+                <div>location</div>
+                <div>weather</div>
+            </div>        
+        </div>
+        <!-- 명언 -->
+        <div id="quote" class="box">
+            <p class="title">Today's Quote</p>
+            <span class="content"></span><br/>
+            <span class="author"></span>
+        </div>    
+        <!-- todo list -->
+    </section>
+    <div class="todo-wrap box">
+        <form id="todo-form">
+            <input 
+                required 
+                type="text" 
+                placeholder="write here :-> !"
+            />
+            <button type="submit">ADD IT</button>
+        </form>
+        <ul class="todo-list"></ul>
+    </div>
+
+
+
+    <script src="./js/clock.js"></script>
+    <script src="./js/quotes.js"></script>
+    <script src="./js/todo.js"></script>
+    <script src="./js/greeting.js"></script>
+    <script src="./js/background.js"></script>
+    <!-- <script src="./js/weather.js"></script> -->
+
+<script>
+    function clearAll() {
+        localStorage.clear();
+        window.location.reload();
+    }
+
+    function buttonDefault (e) {
+        e.preventDefault();
+    }
+</script>
+</body>
+</html>

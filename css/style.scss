@@ -1,0 +1,121 @@
+@mixin size( $width, $height) {
+    width: $width;
+    height: $height;
+}
+@mixin max-size( $width, $height) {
+    max-width: $width;
+    max-height: $height;
+}
+@mixin min-size( $width, $height) {
+    min-width: $width;
+    min-height: $height;
+}
+@mixin flex( $flex-flow, $justify-content,$align-items ){
+    display: flex;
+    flex-flow: $flex-flow;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}   
+@mixin border(){
+    border: 8px ridge #da811b;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 5px 10px;
+}   
+@mixin border-mini() {
+    border-radius: 4px; 
+    border: 5px ridge #da811b;
+    box-sizing: border-box;
+}
+
+body {
+    @include size( 100vw, auto );
+    min-height: 100vh;
+
+    overflow: hidden;
+    margin: 0;
+    @include flex(column, center, center);
+    gap: clamp(20px, 4vw, 40px);
+    background: url(../images/bg02.png) no-repeat 50% 50% / cover;
+
+    box-sizing: border-box;
+    padding: clamp(15px, 5vw, 40px);
+}
+
+.hidden { display: none !important; }
+
+input { min-width: 230px; }
+input, button {
+    height: 35px;
+    background: #fff;
+    @include border-mini();
+    & + button { margin-left: 10px; }
+}
+.box {
+    box-sizing: border-box;
+    min-width: 290px;
+    padding: 5px 8px;
+    background: #fadca6;
+    @include border-mini();
+}
+
+
+.img {
+    overflow: hidden;
+    max-width: 400px;
+    img {
+        width: 100%; height: auto;
+        object-fit: contain;
+    }
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.main-sect {
+    @include flex(column, center, center);
+    
+    .info-wrap {
+        @include min-size( 290px, 254px);
+        box-sizing: border-box;
+        @include flex(column, flex-end, center);
+        
+        background: url(../images/face-bg.png) no-repeat 0 0 / contain ;
+        
+        #greeting {
+            width: 100%;
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 2;
+            text-align: center;
+        }
+    }
+}
+
+.search-wrap {
+    & > * {
+        @include flex(row, center, center);
+        & > span {
+            display: inline-block;
+            font-size: 0;
+            @include size(30px, 30px);
+            background: no-repeat 50% 50% / contain;
+            margin-right: 10px;
+
+        }
+        input[type=search] {
+            width: 88%;
+            height: 35px;
+            flex-shrink: 1;
+            border: 0;
+            @include border-mini();
+        }
+    }
+
+    .google { span { background-image: url(../images/google.png); } }
+    .naver { span { background-image: url(../images/naver.png); } }
+}
